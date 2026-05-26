@@ -1,15 +1,38 @@
-# Enterprise RAG: Domain-Specific AI Assistant
+# 🏢 Company Knowledge Assistant (Semantic RAG Chatbot)
 
-An advanced, conversational AI chatbot workspace built and optimized for cloud notebook environments (such as Kaggle) and local Python executions. This project demonstrates the step-by-step implementation of custom system prompts, multi-turn dialogue state management, and an end-to-end Retrieval-Augmented Generation (RAG) architecture using Python and the official OpenAI API.
+**Course Project:** Project 3 of AI  
+**Student Name:** Ammara Akhtar  
+**Registration No:** 04102213008  
 
-## 🚀 Project Overview
-
-This system bridges the gap between generic large language models and highly localized, contextual corporate knowledge bases. The project is split into two primary phases:
-1. **Domain-Specific System Prompting (Lab 9):** Implements persona-driven assistants (such as an HR Advisor and TechShop Customer Support Bot) equipped with strict operational parameters and stateful conversation memory logs.
-2. **Retrieval-Augmented Generation / RAG (Lab 10):** Implements a lightweight internal file reader, paragraph tokenizer, and keyword frequency matching retrieval engine from scratch in pure Python to anchor the LLM's answers directly inside private corporate policies, effectively eliminating factual hallucinations.
+An interactive Retrieval-Augmented Generation (RAG) chatbot built to query internal company policies semantically. This project is optimized to run completely locally or within resource-constrained environments (like Kaggle) by utilizing open-source text embeddings and an efficient local vector database, bypassing reliance on active external LLM API quotas.
 
 ---
 
-## 🛠️ System Architecture
+## 🚀 Features
 
-The workflow below illustrates how incoming user queries are dynamically paired with relevant contextual reference chunks before hitting the model endpoint:
+* **Semantic Search vs. Keyword Search:** Utilizes deep-learning embeddings to understand query intent rather than basic keyword matching (e.g., matching "PTO rules" to "Vacation Policy").
+* **Zero-Cost Embedding Layer:** Uses the open-source `all-MiniLM-L6-v2` transformer model generating 384-dimensional dense vectors locally.
+* **Persistent Vector DB:** Powered by **ChromaDB** to index, store, and query document chunks efficiently.
+* **Interactive UI:** A sleek, conversational chat interface built using **Streamlit** featuring real-time document search tracking and chat history metrics.
+* **Production Workaround/Fallback:** Features a smart fail-safe mechanism that instantly delivers exact context matches cleanly if external LLM generation is blocked by API limits or network constraints.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend UI:** Streamlit
+* **Orchestration & Loading:** LangChain & LangChain-Community
+* **Vector Database:** ChromaDB (Persistent Storage)
+* **Embedding Model:** Hugging Face `sentence-transformers/all-MiniLM-L6-v2`
+* **Tunneling/Deployment:** Serveo / Localtunnel (for cloud execution access)
+
+---
+
+## 📁 Project Structure
+
+```text
+├── company_docs/          # Raw policy text documents (Vacation, WFH, Maternity)
+├── chromadb/              # Persistent vector store binary directory
+├── app.py                 # Streamlit web application source code
+├── project3-rag-llm-chatbot-ipynb.ipynb # Step-by-step development notebook
+└── README.md              # Project documentation
